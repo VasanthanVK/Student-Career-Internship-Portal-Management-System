@@ -1,0 +1,341 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  /* ── Professional Deep Navy-Blue Palette ───────────────────────────────
+     Base: #0b0f1e  (deep indigo-navy — used by Linear, Raycast, Vercel)
+     Card: #111828  (slightly lifted surface)
+     Border: subtle white-alpha so cards feel layered, not flat
+  ── */
+  --background: oklch(0.098 0.038 268);      /* #0b0f1e — deep navy      */
+  --foreground: oklch(0.96  0.006 248);       /* #eff2fa — cool white     */
+  --card:       oklch(0.148 0.038 265);       /* #111828 — lifted surface */
+  --card-foreground: oklch(0.96 0.006 248);
+  --popover:    oklch(0.148 0.038 265);
+  --popover-foreground: oklch(0.96 0.006 248);
+  --primary:    oklch(0.62  0.22  264);       /* vivid indigo-blue        */
+  --primary-foreground: oklch(0.98 0.003 248);
+  --secondary:  oklch(0.188 0.038 264);       /* #182035 — muted surface  */
+  --secondary-foreground: oklch(0.82 0.018 256);
+  --muted:      oklch(0.188 0.038 264);
+  --muted-foreground: oklch(0.58 0.04  260);
+  --accent:     oklch(0.22  0.06  268);       /* slightly brighter navy   */
+  --accent-foreground: oklch(0.96 0.006 248);
+  --destructive: oklch(0.65 0.22  22);
+  --border:     oklch(1 0 0 / 8%);            /* crisp subtle divider     */
+  --input:      oklch(1 0 0 / 10%);
+  --ring:       oklch(0.62  0.22  264 / 50%);
+  --chart-1:    oklch(0.55  0.24  264);
+  --chart-2:    oklch(0.65  0.18  162);
+  --chart-3:    oklch(0.75  0.19  70);
+  --chart-4:    oklch(0.60  0.26  304);
+  --chart-5:    oklch(0.62  0.24  16);
+  --sidebar:    oklch(0.125 0.038 266);
+  --sidebar-foreground: oklch(0.82 0.018 256);
+  --sidebar-primary: oklch(0.62 0.22 264);
+  --sidebar-primary-foreground: oklch(0.98 0.003 248);
+  --sidebar-accent: oklch(0.188 0.038 264);
+  --sidebar-accent-foreground: oklch(0.82 0.018 256);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring:  oklch(0.62 0.22 264 / 40%);
+}
+
+/* @layer utilities{
+  .gradient{
+    @apply bg-gradient-to-br from-gray-500 via-gray-200 to-white
+  }
+  .gradient-title{
+    @apply gradient text-transparent bg-clip-text;
+  }
+} */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Subtle mesh gradient for depth — visible in dark mode */
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20%  -10%, oklch(0.62 0.22 264 / 12%) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 80%   110%, oklch(0.50 0.26 304 / 10%) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL SCROLLBAR — thin, professional, navy-tinted
+═══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar               { width: 6px; height: 6px; }
+::-webkit-scrollbar-track         { background: transparent; }
+::-webkit-scrollbar-thumb         {
+  background: oklch(0.35 0.08 264 / 60%);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover   { background: oklch(0.50 0.15 264 / 80%); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MARKDOWN RENDERER  (.wmde-markdown)
+   Used by: Job detail page (requirements), Post Job page (editor)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Base reset ── */
+.wmde-markdown {
+  background: transparent !important;
+  color: oklch(0.85 0.018 256) !important;
+  font-size: 15px;
+  line-height: 1.8;
+  font-family: inherit;
+}
+
+/* ── Headings ── */
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4 {
+  color: oklch(0.96 0.006 248) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 1.4em 0 0.5em;
+  line-height: 1.3;
+}
+.wmde-markdown h1 { font-size: 1.75rem; }
+.wmde-markdown h2 {
+  font-size: 1.25rem;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid oklch(1 0 0 / 8%);
+}
+.wmde-markdown h3 { font-size: 1.05rem; }
+
+/* ── Unordered List ── */
+.wmde-markdown ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0.6em 0 0.8em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Custom bullet — glowing indigo diamond */
+.wmde-markdown ul > li {
+  position: relative;
+  padding-left: 22px;
+  color: oklch(0.82 0.018 256) !important;
+  font-size: 14.5px;
+  line-height: 1.7;
+  background: transparent;
+}
+.wmde-markdown ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, oklch(0.62 0.22 264), oklch(0.55 0.26 304));
+  box-shadow: 0 0 6px oklch(0.62 0.22 264 / 55%);
+  flex-shrink: 0;
+}
+
+/* Nested ul — thinner, dimmer bullet */
+.wmde-markdown ul ul {
+  margin: 4px 0 4px 16px;
+  gap: 4px;
+}
+.wmde-markdown ul ul > li::before {
+  width: 5px;
+  height: 5px;
+  top: 10px;
+  background: oklch(0.50 0.15 264 / 70%);
+  box-shadow: none;
+}
+
+/* ── Ordered List ── */
+.wmde-markdown ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0.6em 0 0.8em;
+  counter-reset: md-ol;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.wmde-markdown ol > li {
+  position: relative;
+  padding-left: 28px;
+  color: oklch(0.82 0.018 256) !important;
+  font-size: 14.5px;
+  line-height: 1.7;
+  counter-increment: md-ol;
+}
+.wmde-markdown ol > li::before {
+  content: counter(md-ol);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, oklch(0.62 0.22 264 / 25%), oklch(0.55 0.26 304 / 20%));
+  border: 1px solid oklch(0.62 0.22 264 / 30%);
+  font-size: 10px;
+  font-weight: 700;
+  color: oklch(0.72 0.18 264);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ── Blockquote ── */
+.wmde-markdown blockquote {
+  margin: 1em 0;
+  padding: 12px 16px;
+  border-left: 3px solid oklch(0.62 0.22 264 / 60%);
+  background: oklch(0.62 0.22 264 / 6%);
+  border-radius: 0 10px 10px 0;
+  color: oklch(0.72 0.04 256) !important;
+  font-style: italic;
+}
+
+/* ── Inline code ── */
+.wmde-markdown code:not(pre code) {
+  background: oklch(0.22 0.06 268 / 80%) !important;
+  color: oklch(0.78 0.18 264) !important;
+  border: 1px solid oklch(1 0 0 / 8%);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 13px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ── Code block ── */
+.wmde-markdown pre {
+  background: oklch(0.12 0.04 266) !important;
+  border: 1px solid oklch(1 0 0 / 8%);
+  border-radius: 12px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+.wmde-markdown pre code {
+  background: transparent !important;
+  color: oklch(0.82 0.018 256) !important;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 13px;
+}
+
+/* ── Horizontal rule ── */
+.wmde-markdown hr {
+  border: none;
+  border-top: 1px solid oklch(1 0 0 / 8%);
+  margin: 1.5em 0;
+}
+
+/* ── Links ── */
+.wmde-markdown a {
+  color: oklch(0.65 0.20 264) !important;
+  text-decoration: none;
+  border-bottom: 1px solid oklch(0.65 0.20 264 / 35%);
+  transition: border-color 0.15s, color 0.15s;
+}
+.wmde-markdown a:hover {
+  color: oklch(0.75 0.22 264) !important;
+  border-bottom-color: oklch(0.75 0.22 264 / 70%);
+}
+
+/* ── Paragraph spacing ── */
+.wmde-markdown p {
+  margin: 0.5em 0;
+  color: oklch(0.82 0.018 256) !important;
+}
+
+/* ── Strong / em ── */
+.wmde-markdown strong {
+  color: oklch(0.94 0.010 248) !important;
+  font-weight: 700;
+}
+.wmde-markdown em {
+  color: oklch(0.78 0.06 264) !important;
+}

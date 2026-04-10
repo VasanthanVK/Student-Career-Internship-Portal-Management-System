@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is Hirrd?",
+    "answer": "Hirrd is an Internship Portal Application allows companies to post internship listings and users to search and apply for internships. It provides features for both internship seekers and employers, with user-friendly interfaces and secure authentication."
+  },
+  {
+    "question": "How do I post an internship?",
+    "answer": "As an employer, you can post an internship by navigating to the 'Post Job' section after logging in. Fill in the internship details and submit the form to create a new internship listing."
+  },
+  {
+    "question": "How can I search for internships?",
+    "answer": "Internship seekers can search for internships by keywords, location, category, and other filters using the search bar on the homepage or the dedicated internship search page."
+  },
+  {
+    "question": "How do I apply for an internship?",
+    "answer": "To apply for an internship, click on the internship listing and follow the application instructions provided. You may need to upload your resume and provide additional information."
+  },
+  {
+    "question": "Can I save internships to apply later?",
+    "answer": "Yes, you can save internship listings by clicking the 'Save Job' button on the internship listing. Saved internships can be accessed from your profile under the 'Saved Jobs' section."
+  },
+  {
+    "question": "How do I track my internship applications?",
+    "answer": "Internship seekers can track the status of their applications from the 'Applications' section in their profile. This section provides updates on the progress of each application."
+  }
+]
