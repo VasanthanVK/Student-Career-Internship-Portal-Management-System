@@ -19,3 +19,5 @@ If you are developing a production application, we recommend using TypeScript wi
 # Student-Career-Internship-Portal-Management-System
 Role-based Job &amp; Internship Portal with Candidate, Recruiter and Admin workflows, recruiter approval system, application tracking and automated email notifications built using React+Vite, Node.js, Express, Supabase and Clerk. Authentication 
 >>>>>>> f27d3dbd8a497db17818e86f9f3b01c1c5b8000f
+"# Student-Career-Internship-Portal-Management-System" 
+"# Student-Career-Internship-Portal-Management-System" 
