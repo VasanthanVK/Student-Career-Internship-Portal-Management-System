@@ -16,7 +16,7 @@ import { useUser } from "@clerk/clerk-react";
 import MDEditor from "@uiw/react-md-editor";
 import { Briefcase, DoorClosed, DoorOpen, MapPinIcon } from "lucide-react";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Job = () => {
   const { id } = useParams();
@@ -63,6 +63,11 @@ const Job = () => {
   if (!isLoaded || loadingJob) {
     return <BarLoader loading={true} />;
   }
+  
+  if (!job) {
+    return <div className="text-center mt-20 text-2xl font-bold text-slate-500">Job not found or no longer available.</div>;
+  }
+
   return (
     <div className="flex flex-col gap-8 mt-5">
       <div className="flex flex-col-reverse gap-6 md:flex-row justify-between items-center">
@@ -128,15 +133,30 @@ const Job = () => {
 
       {/* render applications */}
       {job?.recruiter_id !== user?.id && (
-        <ApplyJobDrawer
-          Job={job}
-          user={user}
-          fetchJob={fnJob}
-          applied={job?.applications?.find(
-            (ap) => ap.candidate_id === user?.id,
-          )}
-          candidateProfile={candidateProfile}
-        />
+        <div className="flex flex-col gap-5 mt-4 p-6 bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800/50 rounded-2xl">
+          <div className="flex flex-col gap-1.5">
+            <h3 className="font-bold text-lg text-blue-900 dark:text-blue-100">Ready to apply?</h3>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              Check your resume's ATS match score before applying to this internship to increase your chances of getting hired!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <ApplyJobDrawer
+              Job={job}
+              user={user}
+              fetchJob={fnJob}
+              applied={job?.applications?.find(
+                (ap) => ap.candidate_id === user?.id,
+              )}
+              candidateProfile={candidateProfile}
+            />
+            <Link to="/atsanalysis" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto h-[44px] sm:h-11 px-6 flex items-center justify-center gap-2 rounded-xl border-2 border-blue-200 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-semibold bg-white dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:border-blue-300 dark:hover:border-blue-600 transition-all shadow-sm">
+                 ✨ AI Resume Match
+              </button>
+            </Link>
+          </div>
+        </div>
       )}
 
       {job?.applications?.length > 0 && job?.recruiter_id == user?.id && (
@@ -158,4 +178,3 @@ const Job = () => {
 
 export default Job;
 
-//timing 3.1.8 post job

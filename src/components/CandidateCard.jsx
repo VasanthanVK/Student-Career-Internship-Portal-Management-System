@@ -1,4 +1,4 @@
-import { MapPin, Briefcase, FileText, Mail, User } from 'lucide-react';
+import { MapPin, Briefcase, FileText, Mail, User, Phone, Linkedin, Github } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -19,13 +19,39 @@ const CandidateCard = ({ candidate }) => {
       </CardHeader>
 
       <CardContent className="flex-1 space-y-4 pt-2">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Mail size={14} className="text-primary"/>
-          <span className="truncate">{candidate.email}</span>
-        </div>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <MapPin size={14} className="text-primary"/>
-          <span>{candidate.location}</span>
+        <div className="space-y-2.5">
+          <div className="flex items-center gap-2.5 text-sm text-foreground bg-secondary/40 p-2.5 rounded-lg border border-border/50">
+            <Mail size={16} className="text-primary"/>
+            <span className="truncate font-medium">{candidate.email}</span>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-secondary/20 p-2 rounded-md border border-border/30">
+              <MapPin size={14} className="text-destructive"/>
+              <span className="truncate">{candidate.location || "N/A"}</span>
+            </div>
+            {candidate.phone && (
+              <div className="flex items-center gap-2 text-xs text-muted-foreground bg-secondary/20 p-2 rounded-md border border-border/30">
+                <Phone size={14} className="text-emerald-500"/>
+                <span className="truncate">{candidate.phone}</span>
+              </div>
+            )}
+          </div>
+
+          {(candidate.linkedin || candidate.github) && (
+             <div className="flex gap-2">
+                {candidate.linkedin && (
+                  <a href={candidate.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 text-[11px] font-bold tracking-wide uppercase bg-[#0A66C2]/10 text-[hsl(var(--foreground))] p-2 rounded-md hover:bg-[#0A66C2]/20 transition-colors border border-[#0A66C2]/20">
+                    <Linkedin size={14} className="text-[#0A66C2]" /> LinkedIn
+                  </a>
+                )}
+                {candidate.github && (
+                  <a href={candidate.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 text-[11px] font-bold tracking-wide uppercase bg-secondary/50 text-[hsl(var(--foreground))] p-2 rounded-md hover:bg-secondary transition-colors border border-border/50">
+                    <Github size={14} /> GitHub
+                  </a>
+                )}
+             </div>
+          )}
         </div>
 
         <div className="space-y-2">

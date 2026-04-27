@@ -6,7 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Briefcase, Mail, MapPin, Award, FileText, User } from 'lucide-react';
+import { Briefcase, Mail, MapPin, Award, FileText, User, Phone, Linkedin, Github, LinkedinIcon } from 'lucide-react';
+import { Gif02FreeIcons, Git, GitBranch, Linkedin02Icon} from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
+import ResumeAnalysisDialog from './Resumebox';
 
 const profileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -15,14 +18,19 @@ const profileSchema = z.object({
   location: z.string().min(2, "Location is required"),
   skills: z.string().min(1, "Please enter at least one skill"),
   resume: z.any().optional(),
+  phone: z.string().optional(),
+  linkedin: z.string().url("Invalid LinkedIn URL").optional().or(z.literal("")),
+  github: z.string().url("Invalid GitHub URL").optional().or(z.literal("")),
 });
 
 const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
+  const[open, setOpen] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -31,6 +39,9 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
       headlines: initialData?.headlines || "",
       location: initialData?.location || "",
       skills: Array.isArray(initialData?.skills) ? initialData.skills.join(", ") : initialData?.skills || "",
+      phone: initialData?.phone || "",
+      linkedin: initialData?.linkedin || "",
+      github: initialData?.github || "",
     },
   });
 
@@ -42,9 +53,23 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
             headlines: initialData.headlines || "",
             location: initialData.location || "",
             skills: Array.isArray(initialData.skills) ? initialData.skills.join(", ") : initialData.skills || "",
+            phone: initialData.phone || "",
+            linkedin: initialData.linkedin || "",
+            github: initialData.github || "",
         });
      }
   }, [initialData, reset]);
+
+  const handleResumeParsed = (parsedData) => {
+    if (parsedData.name) setValue("name", parsedData.name);
+    if (parsedData.email) setValue("email", parsedData.email);
+    if (parsedData.phone) setValue("phone", parsedData.phone);
+    if (parsedData.linkedin) setValue("linkedin", parsedData.linkedin);
+    if (parsedData.github) setValue("github", parsedData.github);
+    if (parsedData.skills && parsedData.skills.length > 0) {
+      setValue("skills", parsedData.skills.join(", "));
+    }
+  };
 
   const handleFormSubmit = (data) => {
     const skillsArray = data.skills.split(",").map(skill => skill.trim()).filter(skill => skill !== "");
@@ -55,6 +80,8 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6 bg-card/40 p-6 rounded-2xl border border-border/50 backdrop-blur-sm">
+       <p className="text-sm text-muted-foreground">Upload your resume to automatically populate your profile fields</p>
+      <ResumeAnalysisDialog onResumeParsed={handleResumeParsed} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name" className="flex items-center gap-2">
@@ -73,6 +100,14 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
         </div>
 
         <div className="space-y-2">
+          <Label htmlFor="phone" className="flex items-center gap-2">
+            <Phone size={16} className="text-primary"/> Phone Number
+          </Label>
+          <Input id="phone" {...register("phone")} placeholder="e.g. +1 234 567 8900" />
+          {errors.phone && <p className="text-destructive text-xs">{errors.phone.message}</p>}
+        </div>
+
+        <div className="space-y-2">
           <Label htmlFor="location" className="flex items-center gap-2">
             <MapPin size={16} className="text-primary"/> Location
           </Label>
@@ -86,6 +121,24 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
           </Label>
           <Input id="headlines" {...register("headlines")} placeholder="e.g. Full Stack Developer | React Expert" />
           {errors.headlines && <p className="text-destructive text-xs">{errors.headlines.message}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="linkedin" className="flex items-center gap-2">
+            <HugeiconsIcon icon={Linkedin02Icon} size={16} className="text-primary"/> LinkedIn Profile
+          </Label>
+          <Input id="linkedin" {...register("linkedin")} placeholder="https://linkedin.com/in/yourprofile" />
+          {errors.linkedin && <p className="text-destructive text-xs">{errors.linkedin.message}</p>}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="github" className="flex items-center gap-2">
+            <HugeiconsIcon icon={Git} size={16} className="text-primary"/> GitHub Profile
+          </Label>
+          <Input id="github" {...register("github")} placeholder="https://github.com/yourusername" />
+          {errors.github && <p className="text-destructive text-xs">{errors.github.message}</p>}
         </div>
       </div>
 
@@ -119,10 +172,12 @@ const CandidateProfileForm = ({ initialData, onSubmit, loading }) => {
            </p>
         )}
       </div>
+       
 
       <Button type="submit" disabled={loading} className="w-full mt-4 font-bold h-12 text-lg">
         {loading ? "Saving Profile..." : "Update Professional Profile"}
       </Button>
+     
     </form>
   );
 };

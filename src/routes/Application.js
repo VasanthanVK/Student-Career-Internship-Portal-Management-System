@@ -1,6 +1,7 @@
 import express from "express";
 import { sendStatusEmail } from "../Utils/sendMail.js";
 
+
 const router = express.Router();
 
 router.put("/status", async (req, res) => {
@@ -19,5 +20,6 @@ router.put("/status", async (req, res) => {
     });
   }
 });
+
 
 export default router;

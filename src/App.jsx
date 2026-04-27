@@ -14,6 +14,7 @@ import { ThemeProvider } from './components/ui/Themeprvider';
 import ProtectedRoute from './components/ProtectedRoute';
 import BrowseCandidates from './pages/BrowseCandidates';
 import AdminDashboard from './pages/AdminDashboard';
+import ATSanalysis from './pages/ATSanalysis';
 
 
 
@@ -96,6 +97,12 @@ const router = createBrowserRouter([
         <ProtectedRoute>
           <AdminDashboard/>
         </ProtectedRoute>
+        ),
+      },
+      {
+        path:'/atsanalysis',
+        element:(
+          <ATSanalysis/>
         ),
       },
      ],
