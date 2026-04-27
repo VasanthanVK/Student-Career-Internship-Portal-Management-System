@@ -10,7 +10,6 @@ A comprehensive, role-based Job & Internship Portal designed to seamlessly conne
 - **Application Tracking**: Real-time status updates and tracking for job applications.
 - **Recruiter Approval System**: Admin workflow to verify and approve new recruiter accounts.
 - **Automated Email Notifications**: Seamless communication for application updates and portal alerts using Nodemailer & EmailJS.
-- **Real-Time AI Chat**: Integrated "Wink AI Chat" for instant assistance and queries.
 - **Secure Authentication**: Robust user authentication and identity management powered by Clerk.
 
 ## 💻 Tech Stack
